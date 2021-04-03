@@ -1,0 +1,46 @@
+version: '3.1'
+
+services:
+
+  db_node:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    ports:
+      - 3306
+    volumes:
+      - db_node:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    depends_on:
+      - db_node
+    environment:
+      PMA_ARBITRARY: 1
+    ports: # port HOST:CONTAINER
+      - 8183:80
+
+  app:
+    build: . # build vue app - node
+    image: nodeexpresstutorials:latest  
+    depends_on: #wait or service -- Depreceated
+      - db_node
+    environment:
+      MYSQL_DATABASE: db_node # resolve the db to IP -- I Think
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+
+    volumes:  # add DB FS
+      - .:/node_express_tutorials/src # write to directory 
+    ports:
+      - "5000:8081"
+
+volumes:
+    db_node:
+
+    # start with: docker-compose -f stack.yml up
