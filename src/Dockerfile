@@ -4,6 +4,7 @@
 FROM node:latest
 
 RUN npm install -g http-server 
+RUN npm install -g @vue/cli 
 
 # create a workspace directory
 RUN mkdir -p /node_express_tutorials/src
@@ -21,9 +22,5 @@ CMD http-server -p 8081
 
 # Expose port 8081
 EXPOSE 8081
-
-
-
-
 
 # docker build . -t openjscad
