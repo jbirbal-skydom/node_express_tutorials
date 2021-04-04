@@ -39,6 +39,7 @@ services:
       - .:/node_express_tutorials/src # write to directory 
     ports:
       - "5000:8081"
+      - "5002:8082"
       - "5001:8002"
 
 volumes:
