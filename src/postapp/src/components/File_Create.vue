@@ -1,33 +1,63 @@
 <template>
-  <div class="File_Create">
-    <h1>{{ msg }}</h1>
+  <div class="pull_Create">
+    <div id="vue-app">
+      <form>
+        <p style="white-space: pre-line">name: {{ name }}</p>
+        <input type="text" v-model="name" /><br />
+        <p style="white-space: pre-line">last: {{ last }}</p>
+        <input type="text" v-model="last" /><br />
+        <p style="white-space: pre-line">Index: {{ index }}</p>
+        <input type="text" v-model="index" /><br />
+        <select v-model="grade">
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+          <option>9</option>
+          <option>10</option>
+        </select>
 
-    <input type="email" name="email" v-model="email" placeholder="email" />
+        <span> grade: {{ grade }} </span>
 
-    <input
-      type="password"
-      name="password"
-      v-model="password"
-      placeholder="password"
-    />
-
-    <br />
-    <button @click="register">Register</button>
+        <br />
+        <button type="button" v-on:click="add()">Add To Table</button>
+        <button type="button" v-on:click="saveFile()">saveFile</button>
+      </form>
+      <table border="5">
+        <thead>
+          <td>Name</td>
+          <td>Last Name</td>
+          <td>Index</td>
+          <td>Grade</td>
+        </thead>
+        <tbody>
+          <tr v-for="x in arr" :key="x">
+            <td>{{ x.first }}</td>
+            <td>{{ x.lastn }}</td>
+            <td>{{ x.index }}</td>
+            <td>{{ x.grade }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
 <script>
-import FileCreate from "@/services/FileCreate";
+import getReq from "@/services/getReq";
 export default {
-  name: "File_Create",
+  name: "Pull_Req",
   props: {
     msg: String,
   },
 
   data() {
     return {
-      email: "@gmail",
-      password: "1234",
+      name: "",
+      last: "",
+      index: 0,
+      grade: 0,
+      arr: [],
     };
   },
 
@@ -38,12 +68,28 @@ export default {
   }, */
 
   methods: {
-    async register() {
-      const response = await FileCreate.newFile({
+    async get() {
+      const response = await getReq.reqSend({
         email: this.email,
         password: this.password,
       });
       console.log(response);
+    },
+
+    add: function () {
+      this.arr.push({
+        first: this.name,
+        lastn: this.last,
+        index: this.index,
+        grade: this.grade,
+      });
+      console.log(1);
+    },
+
+    saveFile: function () {
+      const data = JSON.stringify(this.arr);
+      window.localStorage.setItem("arr", data);
+      console.log(JSON.parse(window.localStorage.getItem("arr")));
     },
   },
 };
