@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Register from "../views/Register.vue";
+import Save from "../views/Save.vue";
+import JScad from "../views/JScad.vue";
+import Pull from "../views/Pull.vue";
 
 const routes = [
   {
@@ -21,6 +24,23 @@ const routes = [
     path: "/register",
     name: "Register",
     component: Register,
+  },
+  {
+    path: "/save",
+    name: "Save",
+    component: Save,
+  },
+
+  {
+    path: "/jscad",
+    name: "JScad", //   name: "JScad", line 35
+    component: JScad,
+  },
+
+  {
+    path: "/pull",
+    name: "Pull",
+    component: Pull,
   },
 ];
 
