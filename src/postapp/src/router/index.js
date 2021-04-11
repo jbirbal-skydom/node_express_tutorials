@@ -4,6 +4,7 @@ import Register from "../views/Register.vue";
 import Save from "../views/Save.vue";
 import JScad from "../views/JScad.vue";
 import Pull from "../views/Pull.vue";
+import GetToken from "../views/GetToken.vue";
 
 const routes = [
   {
@@ -41,6 +42,12 @@ const routes = [
     path: "/pull",
     name: "Pull",
     component: Pull,
+  },
+
+  {
+    path: "/gettoken",
+    name: "gettoken",
+    component: GetToken,
   },
 ];
 
