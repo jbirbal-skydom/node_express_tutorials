@@ -8,6 +8,8 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@jscad/core": "^2.0.0-alpha.14",
+    "@jscad/regl-renderer": "^2.0.0-alpha.13",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "register-service-worker": "^1.7.1",

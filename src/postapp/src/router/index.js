@@ -45,7 +45,7 @@ const routes = [
   },
 
   {
-    path: "/gettoken",
+    path: "/token",
     name: "gettoken",
     component: GetToken,
   },
