@@ -1,11 +1,12 @@
-const url = require("url");
+// const url = require("url");
 const path = require("path");
 
-const { web, evaluation } = require("@jscad/core");
+// const { web, evaluation } = require("@jscad/core");
 
 const fetchPlugin = (store) => {
   // called when the store is initialized
   store.subscribe((mutation, state) => {
+    console.log("state", state); // test
     if (mutation.type === "fetch") {
       const remoteURL = mutation.payload;
 
@@ -22,6 +23,7 @@ const fetchPlugin = (store) => {
       // validate the URL
       try {
         const parts = new URL(remoteURL);
+        console.log("parts", parts); // test
         fetchFile(remoteURL, onsucess, onerror);
       } catch (error) {
         store.commit("setStatus", `error (${error.toString()})`);

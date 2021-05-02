@@ -3,6 +3,7 @@ const { web, evaluation } = require("@jscad/core");
 const compilerPlugin = (store) => {
   // called when the store is initialized
   store.subscribe((mutation, state) => {
+    console.log("state", state); // test
     if (mutation.type === "compile") {
       const defaults = { fileList: [], parameterValues: {} };
       const { fileList, parameterValues } = Object.assign(
@@ -51,9 +52,10 @@ const compilerPlugin = (store) => {
 };
 
 const compileFromFiles = (store, files, parameterValues) => {
-  //console.log('compileFromFile',files)
+  console.log("compileFromFile", files, parameterValues); // test
 
   const handleParamsOrSolids = (crap, paramsOrSolids) => {
+    console.log("crap", crap); // test
     if (paramsOrSolids.type === "solids") {
       store.commit("setStatus", "solids...");
       store.commit("setSolids", paramsOrSolids.solids);
@@ -67,6 +69,7 @@ const compileFromFiles = (store, files, parameterValues) => {
 
       const data = { filesAndFolders, serialize: false };
       const objects = evaluation.rebuildGeometry(data, handleParamsOrSolids);
+      console.log("objects", objects); // test
     })
     .then(() => {
       store.commit("setStatus", "done");
@@ -93,6 +96,7 @@ const compileFromSource = (store, fileEntry, parameterValues) => {
       serialize: false,
     };
     const objects = evaluation.rebuildGeometry(data, handleParamsOrSolids);
+    console.log("objects_data", objects); // test
   } catch (error) {
     store.commit("setStatus", `error (${error})`);
   }

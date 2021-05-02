@@ -1,12 +1,8 @@
 <template>
   <div id="nav">
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
+    <router-link to="/see">About</router-link> |
     <router-link to="/jscad">jscad</router-link> |
-    <router-link to="/pull">pull</router-link> |
-    <router-link to="/token">token</router-link> |
-    <router-link to="/save">save</router-link> |
-    <router-link to="/register">register</router-link> |
   </div>
   <router-view />
 </template>
