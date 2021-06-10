@@ -1,7 +1,7 @@
 # 2021MAR26
 # VUE dockerized version
 
-FROM node:latest
+FROM node:16
 RUN npm install -g http-server 
 RUN npm install -g @vue/cli 
 
